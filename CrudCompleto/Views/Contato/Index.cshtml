@@ -1,0 +1,78 @@
+﻿@model CrudWeb.Models.Contato
+
+@{
+    ViewData["Title"] = "Contact";
+}
+ <h1>@ViewData["Title"]</h1>
+<hr /> 
+ <div class="form-container">
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+    <p>Fale com um especialista</p>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="AssuntoId" class="control-label"></label>
+                    <select asp-for="AssuntoId" asp-items="Model.ListaContato" class="form-control">
+                        <option value="" required>Selecione um assunto</option>
+                    </select>
+                    <span asp-validation-for="AssuntoId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label" required></label>
+                    <input asp-for="Nome" class="form-control" placeholder="Digite seu nome" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" type="email" placeholder="Digite seu e-mail" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Telefone" class="control-label"></label>
+                    <input asp-for="Telefone" class="form-control" placeholder="Digite seu telefone" required />
+                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                </div>
+
+              @*   <div class="form-group">
+                    <label asp-for="Empresa" class="control-label"></label>
+                    <input asp-for="Empresa" class="form-control" placeholder="Digite o nome da sua empresa" required />
+                    <span asp-validation-for="Empresa" class="text-danger"></span>
+                </div> *@
+
+                <div class="form-group">
+                    <label asp-for="Mensagem" class="control-label"></label>
+                    <input asp-for="Mensagem" class="form-control" placeholder="Mande sua mensagem" required />
+                    <span asp-validation-for="Mensagem" class="text-danger"></span>
+                </div>
+
+                @* <div class="form-group">
+                    <label asp-for="Mensagem" class="control-label"></label>
+                    <textarea asp-for="Mensagem" class="form-control" placeholder="Mande sua mensagem" rows="4" style="resize: none;" required></textarea>
+                    <span asp-validation-for="Mensagem" class="text-danger"></span>
+                </div> *@ 
+
+                <div class="form-group">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-danger">Voltar</a>
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div> 
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
